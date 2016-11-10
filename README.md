@@ -7,6 +7,10 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 
 1. Fork & Clone
 2. Run `bundle install` to install dependencies
+
+NOTE: If you have an issue installing, do this:
+ - `sudo apt-get install libmagickwand-dev` then back to `bundle install`
+
 3. Create `config/database.yml` by copying `config/database.example.yml`
 4. Create `config/secrets.yml` by copying `config/secrets.example.yml`
 5. Run `bin/rake db:reset` to create, load and seed db

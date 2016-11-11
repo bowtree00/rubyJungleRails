@@ -136,42 +136,42 @@ puts "Re-creating Reviews ..."
 
 Review.destroy_all
 
-reviews.create!({
+Review.create!({
   product_id: 1,
   user_id: 1,
   description: 'This is a test....',
   rating: 4
 })
 
-reviews.create!({
+Review.create!({
   product_id: 1,
   user_id: 2,
   description: 'Really love this thing.',
   rating: 5
 })
 
-reviews.create!({
+Review.create!({
   product_id: 1,
   user_id: 3,
   description: 'Worst ever!  Make it go away.',
   rating: 2
 })
 
-reviews.create!({
+Review.create!({
   product_id: 2,
   user_id: 1,
   description: 'I would never use this again. Terrible',
   rating: 1
 })
 
-reviews.create!({
+Review.create!({
   product_id: 2,
   user_id: 2,
   description: 'Smells weird. Make sure you open a window',
   rating: 2
 })
 
-reviews.create!({
+Review.create!({
   product_id: 2,
   user_id: 2,
   description: 'Don\'t know why people don\'t like this, I love it!',

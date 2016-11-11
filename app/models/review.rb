@@ -4,6 +4,7 @@ class Review < ActiveRecord::Base
   validates :description, presence: true, length: { minimum: 5 }
 
   belongs_to :product
+  belongs_to :user
 end
 
 # Add validations to the model. Think about what is going to be required to be present for the Review to be considered valid, answering the following questions for yourself:

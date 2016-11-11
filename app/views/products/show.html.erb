@@ -26,6 +26,29 @@
       </div>
     </div>
 
+    <div class="row">
+      <% @product.reviews.each do |review| %>
+        <p>
+          <strong><%= review.user.first_name %>: </strong> [<%= review.rating %> stars] - <%= review.description %>
+        </p>
+      <% end %>
+    </div>
+    
+    <div class="review-form-wrapper">
+      
+      <%= form_for [@product, @review] do |f| %>
+        <p>
+          <%= f.select :rating, [5, 4, 3, 2, 1] %>
+          <%= f.text_area :description, placeholder: "add your review here..." %>
+        </p>
+        <p>
+          <%= f.submit "Submit Review" %>
+        </p>
+      <% end %>
+
+    </div>
+
+
   </article>
 
 </section>

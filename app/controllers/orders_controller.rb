@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     # @line_items = LineItem.where("order_id = ?", @order.id)
 
     # SEND CONFIRMATION EMAIL
-    UserMailer.order_confirmation_email(@order).deliver_now
+    UserMailer.order_confirmation_email(@order).deliver
   end
 
   def create

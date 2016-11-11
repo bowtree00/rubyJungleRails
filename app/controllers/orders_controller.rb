@@ -5,6 +5,8 @@ class OrdersController < ApplicationController
     #@products = Product.where(line_items.order_id == id) # get all instances of product where order_id == id for the order
     # @line_items = LineItem.where("order_id = ?", @order.id)
 
+    # SEND CONFIRMATION EMAIL
+    UserMailer.order_confirmation_email(@order).deliver_now
   end
 
   def create

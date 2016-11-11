@@ -4,12 +4,33 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to example.com,</h1>
-    <p>
-      You have successfully signed up to example.com,
-      your username is: <br>
-    </p>
+    <h1>Thanks for your order - here is a summary of your items:</h1>
 
-    <p>Thanks for joining and have a great day!</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.line_items.each do |item| %>
+          <tr>
+            <td>
+              <h4><%= item.product.name %></h4> 
+              <p><%= item.product.description %></p>
+            </td>
+            <td><%= number_to_currency(item.item_price_cents/100) %></td>
+            <td><%= item.quantity %></td>
+            <td><%= number_to_currency(item.total_price_cents/100) %></td>
+          <tr>
+        <% end %>
+      </tbody>
+    </table>
+    <h5>Order Total: <%= number_to_currency(@order.total_cents/100) %></h5>
+
+    <p>Thanks and have a great day!</p>
   </body>
 </html>

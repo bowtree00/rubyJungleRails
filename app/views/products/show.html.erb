@@ -26,29 +26,48 @@
       </div>
     </div>
 
-    <div class="row">
-      <% @product.reviews.each do |review| %>
-        <p>
-          <strong><%= review.user.first_name %>: </strong> [<%= review.rating %> stars] - <%= review.description %>
-        </p>
-      <% end %>
-    </div>
-    
-    <div class="review-form-wrapper">
+    <div class="reviews-container">
       
-      <%= form_for [@product, @review] do |f| %>
-        <p>
-          <%= f.select :rating, [5, 4, 3, 2, 1] %>
-          <%= f.text_area :description, placeholder: "add your review here..." %>
-        </p>
-        <p>
-          <%= f.submit "Submit Review" %>
-        </p>
+      <div class="row reviews-wrapper">
+        <% @product.reviews.each do |review| %>
+          <p class="row individual-review">
+            <strong><%= review.user.first_name %>: </strong> [<%= review.rating %> stars] <%= review.description %>
+          
+            <% if current_user && (review.user_id == current_user.id) %>
+              <%= link_to 'Destroy', product_review_url(@product, review), method: :delete, data: { confirm: 'Are you sure you want to delete your review?' } %>
+            <% end %>
+
+          </p>
+        <% end %>
+      </div>
+      
+      <% if current_user %>
+        <div class="row">
+          <div class="col-sm-8 review-form-wrapper">
+
+            <h4>Leave a review</h4>
+
+            <%= form_for [@product, @review] do |f| %>
+              <div class="col-sm-2 rating-dropdown">
+                <h5>Rating</h5> 
+                <%= f.select :rating, [5, 4, 3, 2, 1] %>
+              </div>
+
+              <div class="col-sm-10 rating-description">
+                <h5>Description</h5>
+                <div class="row">
+                  <div class="col-sm-8"><%= f.text_area :description, placeholder: "add your review here..." %></div>
+                  <div class="col-sm-4">
+                    <div><%= f.submit "Submit Review", :class => 'btn btn-primary' %></div>
+                  </div>
+                </div>
+              </div>
+
+            <% end %>
+        </div>
       <% end %>
 
     </div>
-
-
   </article>
 
 </section>

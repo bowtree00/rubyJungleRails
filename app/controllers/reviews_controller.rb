@@ -1,12 +1,7 @@
 class ReviewsController < ApplicationController
+  before_action :require_login
 
 def create
-  # find the parent model
-  # Use the has_many association to initialize the child instance
-  # Attempt to save
-  # If successful: redirect to appropriate page
-  # Else: render the page where the form resides
-
   @product = Product.find(params[:product_id])
   @review = Review.new(review_params)
   @review.product_id = @product.id
@@ -23,11 +18,27 @@ def create
 
 end
 
+def destroy
+  @review = Review.find(params[:id])
+  @product = Product.find(params[:product_id])
+
+  @review.destroy
+  redirect_to product_path(@product)
+end
+
+
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def review_params
     params.require(:review).permit(:rating, :description)
+  end
+ 
+  def require_login
+    unless current_user
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to login_url # halts request cycle
+    end
   end
 
 end

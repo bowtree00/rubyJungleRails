@@ -83,6 +83,39 @@ main section.products-show {
       max-width: 100%;
     }
   }
+
+  .review-form-wrapper {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    h4 {
+      margin: 2px;
+    }
+
+    textarea {
+      width: 220px;
+    }
+
+    .btn {
+      font-size: 0.9em;
+    }
+  }
+
+  .reviews-container {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .reviews-wrapper {
+    margin: 5px;
+
+    .individual-review {
+      line-height: 0.8em;
+    }
+  }
+
 }
 
 .cart-empty {

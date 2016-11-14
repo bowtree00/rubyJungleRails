@@ -8,6 +8,28 @@
   <p class="description">
     <%= product.description %>
   </p>
+  
+  <div class="product-rating">
+    <!-- This can definitely be refactored! -->
+    <% sum = 0 %>
+    <% count = 0 %>
+    
+    <% product.reviews.each do |review| %>
+      <% sum += review.rating %>
+      <% count += 1 %>
+    <% end %>
+
+    <% if count != 0 %>
+    <h5>Average Rating: </h5>
+      <% avg = sum/count %>
+      <% avg = avg.round %>
+      <p><% avg.times do %>
+        ★
+      <% end %></p>
+    <% end %>
+
+  </div>
+
   <footer class="actions">
     <%= link_to add_item_cart_path(product_id: product.id), class: 'btn btn-primary', method: :put do %>
       <%= fa_icon "shopping-cart", text: 'Add' %>

@@ -105,14 +105,18 @@ main section.products-show {
 
   .reviews-container {
     margin: 10px;
-    padding: 10px;
   }
 
   .reviews-wrapper {
     margin: 5px;
 
     .individual-review {
-      line-height: 0.8em;
+      line-height: 1.0em;
+      margin-bottom: 10px;
+    }
+
+    .review-description {
+      margin-top: 5px;
     }
   }
 

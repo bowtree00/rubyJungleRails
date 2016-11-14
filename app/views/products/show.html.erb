@@ -21,7 +21,7 @@
           <dt>Quantity</dt>
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
-          <dd><%= @product.price %></dd>
+          <dd><%= number_to_currency(@product.price) %></dd>
         </dl>
       </div>
     </div>
@@ -38,26 +38,27 @@
               <div class="col-sm-8">
                 
                 <div class="row">
-                  <div class="col-sm-2 reviewer-name">
+                  <div class="col-sm-4 reviewer-name">
                     <strong><%= review.user.first_name %> </strong> 
                   </div>
                   
-                  <div class="col-sm-6 stars">
+                  <div class="col-sm-5 stars">
                     <% review.rating.times do %>
                       ★
                     <% end %>
                   </div>
-                </div>
 
-                <div class="review-description">
-                  <%= review.description %>
+                  <% if current_user && (review.user_id == current_user.id) %>
+                    <div class="col-sm-2 destroy-button">
+                      <%= link_to 'Delete', product_review_url(@product, review), method: :delete, data: { confirm: 'Are you sure you want to delete your review?' } %>
+                    </div>
+                  <% end %>
                 </div>
-                
-                <% if current_user && (review.user_id == current_user.id) %>
-                  <div class="destroy-button">
-                    <%= link_to 'Delete', product_review_url(@product, review), method: :delete, data: { confirm: 'Are you sure you want to delete your review?' } %>
+                <div class="row">
+                  <div class="col-sm-12 review-description">
+                    <%= review.description %>
                   </div>
-                <% end %>
+                </div>
               </div>
             </div>
           <% end %>

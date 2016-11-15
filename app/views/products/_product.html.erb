@@ -10,22 +10,22 @@
   </p>
   
   <div class="product-rating">
-    <!-- This can definitely be refactored! -->
-    <% sum = 0 %>
-    <% count = 0 %>
     
-    <% product.reviews.each do |review| %>
-      <% sum += review.rating %>
-      <% count += 1 %>
-    <% end %>
+    <% avg = product.average_rating %>
+      
+    <% if !avg.nil? %>
+      
+      <h5>Average Rating: </h5>
 
-    <% if count != 0 %>
-    <h5>Average Rating: </h5>
-      <% avg = sum/count %>
-      <% avg = avg.round %>
-      <p><% avg.times do %>
-        ★
-      <% end %></p>
+      <p><% (1..avg).each do %>
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      <% end %>
+      
+      <% (0..4 - avg).each do %>
+        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+      <% end %>
+      <p>
+
     <% end %>
 
   </div>
@@ -43,10 +43,10 @@
     <%= humanized_money_with_symbol product.price %>
   </aside>
 
-  <% if product.quantity == 0 %>
-  <aside class="sold-out">
-    SOLD OUT!
-  </aside>
+  <% if product.sold_out? %>
+    <aside class="sold-out">
+      SOLD OUT!
+    </aside>
   <% end %>
   
 </article>

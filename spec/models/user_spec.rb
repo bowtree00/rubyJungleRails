@@ -6,8 +6,12 @@ RSpec.describe User, type: :model do
 
   describe 'Validations' do
     it "user must be created with a password and password_confirmation" do
+      # SETUP
       @user=User.new(first_name: "test", last_name: "test", email: "something@gmail.com", password: "asdfasdf", password_confirmation: "asdfasdf")
       
+      # EXERCISE (none)
+      
+      # VERIFY
       # expect(@user.save).to be(true)
       expect(@user.valid?).to be(true)
     end

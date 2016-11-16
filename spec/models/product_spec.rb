@@ -15,8 +15,13 @@ RSpec.describe Product, type: :model do
   # You should therefore have five examples defined given that you have the four validations above
 
     it 'saves successfully if all four fields are present' do
+      # SETUP
       @category = Category.new(name: "Animal stuff")
+
+      # EXERCISE
       @product = Product.new(name: "Cat pillow", price: 49, quantity: 1, category: @category)
+       
+      # VERIFY
       expect(@product.save).to be(true)
     end
   

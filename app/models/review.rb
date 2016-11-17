@@ -2,6 +2,7 @@ class Review < ActiveRecord::Base
 
   validates :rating, presence: true
   validates :description, presence: true, length: { minimum: 5 }
+  # Might be good to validate that the review has a user_id and product_id.
 
   belongs_to :product
   belongs_to :user

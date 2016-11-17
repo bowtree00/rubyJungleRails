@@ -5,11 +5,13 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true
-  validates :password, presence: { on: create }, length: { minimum: 8 }
+  # nice touch here with presence.
+  # btw, I think it should be {on: :create}
+  validates :password, presence: { on: create }, length: { minimum: 8 } 
 
   has_many :reviews
   
-
+  # Nice use of class method.
   def self.authenticate_with_credentials(email, password)
     # It will take as arguments: the email address and password the user typed into the login form,
     # And return: an instance of the user (if successfully authenticated), or nil (otherwise).

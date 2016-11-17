@@ -18,7 +18,16 @@ class SessionsController < ApplicationController
       redirect_to '/'
     else
     # If user's login doesn't work, send them back to the login form.
+      # redirect_to '/login'
+      # render :new, notice: "Invalid email/password combination"
+      
+      # flash.now.alert = "Invalid username/password combination"
+
+      # redirect_to '/login' notice: "Invalid username/password combination"
+      
+      flash[:notice] = 'Invalid username/password combination!'
       redirect_to '/login'
+
     end
   end
 

@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :email, presence: true
   validates :password, presence: { on: create }, length: { minimum: 8 }
+  #validates :password, presence: { on: create }, length: { minimum: 8 }
+  # nice touch here with presence.
+  # btw, I think it should be {on: :create}
 
   has_many :reviews
   

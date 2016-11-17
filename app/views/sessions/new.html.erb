@@ -2,10 +2,36 @@
 
 <h1>Login</h1>
 
-<%= form_tag '/login' do %>
+<div class="col-xs-7 col-sm-4 col-md-4 login-container">
 
-  Email: <%= text_field_tag :email %>
-  Password: <%= password_field_tag :password %>
-  <%= submit_tag "Submit" %>
+  <%= form_tag '/login' do %>
 
-<% end %>
+    <div class="row form-row"> 
+      <div class="col-sm-3 col-md-3">Email:</div>
+      <div class="col-sm-9 col-md-9"><%= text_field_tag :email %></div>
+    </div>
+    <div class="row form-row"> 
+      <div class="col-sm-3 col-md-3">Password:</div>
+      <div class="col-sm-9 col-md-9"><%= password_field_tag :password %></div>
+    </div>
+    <div class="row"> 
+      <div class="col-sm-4 col-md-4">
+        <%= submit_tag "Submit", :class => "login-submit btn btn-primary" %>
+      </div>
+    </div>
+    
+  <% end %>
+
+  <!-- <div class="row"> -->
+  <% if flash[:notice] %>
+    <h5 class="alert"><%= flash[:notice] %></h5>
+  <% end %>
+<!--   </div> -->
+
+</div>
+
+
+
+
+
+
